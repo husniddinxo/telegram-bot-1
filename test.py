@@ -61,4 +61,4 @@ message = message.Message(
     dice=dice,
     location=location,
 )
-print(message)
+# print(message)
