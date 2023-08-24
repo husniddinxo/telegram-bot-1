@@ -165,13 +165,21 @@ class Bot:
         return updates
 
 
-    def send_message(self, chat_id: int, text: str):
+    def send_message(self, chat_id: int, text: str, reply_markup=None):
         method = "sendMessage"
-        params = {
-            "chat_id": chat_id,
-            "text": text,
-        }
-        resp = requests.post(self.api_url + method, params)
+
+        if reply_markup == None:
+            data = {
+                "chat_id": chat_id,
+                "text": text,
+            }
+        else:
+            data = {
+                "chat_id": chat_id,
+                "text": text,
+                "reply_markup": reply_markup,
+            }
+        resp = requests.post(self.api_url + method, json=data)
 
         return resp
 
